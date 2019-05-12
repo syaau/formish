@@ -1,13 +1,5 @@
 import React, { useCallback } from 'react';
-import { TextInput, DateInput, ListInput, YesNoInput, ChoicesInput, SelectInput } from './inputs';
-
-const types = [
-  { id: 'Text', C: TextInput },
-  { id: 'Date', C: DateInput },
-  { id: 'List', C: ListInput },
-  { id: 'Yes/No', C: YesNoInput },
-  { id: 'Choices', C: ChoicesInput },
-];
+import { types, TextInput, SelectInput } from '../inputs';
 
 export default function Structure({ value, onChange }) {
   const handleChange = useCallback((name, value) => {

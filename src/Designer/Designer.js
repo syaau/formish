@@ -4,36 +4,10 @@ import Structure from './Structure';
 import { useMarkDown } from '../processor';
 import { usePrinter } from '../Printer';
 
-const defaultInputs = [
-  { name: 'DATE', type: 'Date' },
-  { name: 'NAME', type: 'Text' },
-  { name: 'DOB', type: 'Date' },
-  { name: 'GENDER', type: 'Choices', choices: 'Male,Female' },
-  { name: 'MARRIED', type: 'Yes/No' },
-  { name: 'RECOMMENDATIONS', type: 'List' },
-];
+import storage from '../storage';
 
-function loadStructure() {
-  const config = localStorage.getItem('configuration');
-  try {
-    const res = JSON.parse(config);
-    if (res === null) throw new Error('Empty');
-    if (!res.structure || !res.markdown) throw new Error('Invalid data');
-
-    return res;
-  } catch (err) {
-    return {
-      structure: defaultInputs,
-      markdown: '# Hello World',
-    };
-  }
-}
-
-function saveStructure(data) {
-  localStorage.setItem('configuration', JSON.stringify(data));
-}
-
-const data = loadStructure();
+const data = storage.loadConfig();
+console.log('Data', data);
 
 export default function Designer() {
   const [structure, setStructure] = useState(data.structure);
@@ -42,10 +16,10 @@ export default function Designer() {
   const markdown = useMarkDown(source, structure);
 
   const onSave = useCallback(() => {
-    saveStructure({
-      markdown: source,
-      structure: structure,
-    });
+    // saveStructure({
+    //   markdown: source,
+    //   structure: structure,
+    // });
   }, [structure, source]);
 
   const preview = (

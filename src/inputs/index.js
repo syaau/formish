@@ -13,3 +13,11 @@ export {
   ChoicesInput,
   SelectInput,
 }
+
+export const types = [
+  { id: 'Text', C: TextInput },
+  { id: 'Date', C: DateInput },
+  { id: 'List', C: ListInput },
+  { id: 'Yes/No', C: YesNoInput },
+  { id: 'Choices', C: ChoicesInput },
+];

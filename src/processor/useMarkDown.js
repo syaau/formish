@@ -9,7 +9,6 @@ export default function useMarkDown(source, structure, data = null) {
       return res;
     }, { structure: {}, data: {}});
 
-    console.log(r);
     return process(source, data || r.data, r.structure);
   }, [source, structure, data]);
 
