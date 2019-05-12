@@ -1,5 +1,17 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
 .App {
-  text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -29,5 +41,105 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.Full {
+  display: flex;
+  height: 100%;
+}
+
+.Half {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.Editor textarea {
+  flex: 1;
+  background-color: #eee;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.Editor table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.Editor select, .Editor input, .Editor textarea {
+  border: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12pt;
+  width: 100%;
+}
+
+.Editor .Radio input {
+  width: auto;
+}
+
+.Editor .Radio {
+  display: flex;
+}
+
+.Editor .Radio label {
+  display: flex;
+  flex: 1;
+}
+
+.Editor td {
+  padding: 5px;
+}
+
+.Editor tr {
+  border-bottom: 1px solid black;
+}
+
+.row {
+  align-items: left;
+  padding: 10px;
+}
+
+.caption {
+  display: inline-block;
+  width: 120px;
+}
+
+.Preview {
+  padding: 10px;
+}
+
+.Paper {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  overflow: scroll;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.Paper h1 {
+  margin: 0px 0px 20pt 0px;
+}
+.Paper p {
+  margin: 0px 0px 15pt 0px;
+}
+
+.PrintPreview {
+  width: 8.7in;
+}
+
+@media print {
+  @page { margin: 0; }
+
+  body {
+    visibility: hidden;
+  }
+
+  .Paper {
+    visibility: visible;
+    padding: 0.7in;
+    border: none;
   }
 }
