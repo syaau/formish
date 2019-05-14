@@ -11,6 +11,7 @@
     "react-scripts": "3.0.1",
     "react-window": "^1.8.1"
   },
+  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && rimraf docs && mv build docs",
