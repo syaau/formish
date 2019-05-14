@@ -20,40 +20,37 @@ export function useToolBar(Component, dependencies = []) {
 
   useEffect(() => {
     return registerTools(groupSeq, Component);
+  // eslint-disable-next-line
   }, dependencies);
 }
 
-export default function ToolBar(props) {
+export default function ToolBar({ title, ...other }) {
   const [tools, updateTools] = useState([]);
 
   const registerTools = useCallback((seq, Group) => {
     updateTools(prev => {
       const res = prev.slice();
-      for (let i = 0; i < prev.length; i += 1) {
-        if (prev[i].seq > seq) {
-          res.splice(i, { seq, Group });
-          return res;
-        }
-      }
       res.push({ seq, Group });
+      res.sort((a, b) => b.seq - a.seq);
       return res;
     });
 
     return () => {
       updateTools(prev => prev.filter(p => p.seq !== seq));
     }
-  }, [updateTools]);
+  }, []);
 
   return (
     <ToolBarContext.Provider value={registerTools}>
       {tools.length > 0 && (
         <div className="ToolBar">
+          <h3>{title}</h3>
           {tools.map(({ seq, Group }) => (
-            <Group key={seq} />
+            <div key={seq} className="ToolBarGroup"><Group /></div>
           ))}
         </div>
       )}
-      <React.Fragment {...props} />
+      <React.Fragment {...other} />
     </ToolBarContext.Provider>
   )
 }

@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
-import { types, TextInput, SelectInput } from '../inputs';
+import { types, TextInput, SelectInput } from '../../inputs';
 
 export default function Structure({ value, onChange }) {
   const handleChange = useCallback((name, value) => {
-    console.log('Handle Change', name, value);
     onChange((prev) => ({
       ...prev,
       [name]: value,
