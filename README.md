@@ -2,7 +2,7 @@
 1. Uses mark down for defining the template
 2. Uses special fields DATE, NAME, DOB, GENDER, MARRIED for
    special values like age, he/his/him, Mr/Ms/Mrs.
-3. Use special fields for data formatting YYYY, YY, MMM, MM,
+3. Use special fields for date formatting YYYY, YY, MMM, MM,
    Do, DD, ddd, dddd, etc.
 4. Use suffix for displaying list values as ordered(1.) or
    unordered(*) list.
