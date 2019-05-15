@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown/with-html';
 import { useMarkDown } from './processor';
 
 const onPrint = () => window.print();
@@ -18,7 +18,7 @@ export default function Preview({ source, structure, record, printable }) {
         </button>
       )}
       <div className="Paper">
-        <ReactMarkdown source={markdown} />
+        <ReactMarkdown source={markdown} escapeHtml={false} />
       </div>
     </div>
   );

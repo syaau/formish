@@ -135,7 +135,14 @@ body {
 .Paper p {
   margin: 0px 0px 15pt 0px;
 }
-
+.Paper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.Paper td, .Paper th {
+  border: 1px solid black;
+  padding: 3px;
+}
 .PrintPreview {
   width: 8.7in;
 }
