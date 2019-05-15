@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect, useRef, useCallback } from 'react';
+import pkg from '../package.json';
+import github from './github-light.png';
 
 const ToolBarContext = React.createContext();
 
@@ -44,7 +46,13 @@ export default function ToolBar({ title, ...other }) {
     <ToolBarContext.Provider value={registerTools}>
       {tools.length > 0 && (
         <div className="ToolBar">
-          <h3>{title}</h3>
+          <div className="Brand">
+            <a href={pkg.repository.url} target="_blank" rel="noopener noreferrer">
+              <img src={github} alt="Github" />
+            </a>
+            <h3>{title}</h3>
+            <sub>v{pkg.version}</sub>
+          </div>
           {tools.map(({ seq, Group }) => (
             <div key={seq} className="ToolBarGroup"><Group /></div>
           ))}
