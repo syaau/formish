@@ -55,7 +55,7 @@ const storage = {
     let record = data;
     if (!data.id) {
       const records = storage.loadRecords();
-      const id = (parseInt(records[0]) || 0) + 1;
+      const id = Date.now();
       record = Object.assign({}, data, { id });
       console.log('Saving record', id, record);
       localStorage.setItem(`rec-${id}`, JSON.stringify(record));
