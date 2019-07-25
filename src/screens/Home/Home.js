@@ -47,6 +47,40 @@ function createBackup() {
   };
 }
 
+function createLoad(setRecords) {
+  return (data) => {
+    try {
+      const obj = JSON.parse(data);
+      if (!obj.config) throw new Error(`No configuration found`);
+      if (!Array.isArray(obj.config.structure)) throw new Error('No valid config structure found');
+      if (!obj.config.markdown) throw new Error('No configuration template found');
+      if (!obj.records || !Array.isArray(obj.records)) throw new Error('No data records found');
+      if (!obj.data || typeof obj.data !== 'object') throw new Error('No data content found');
+
+      const currentIds = new Set(storage.loadRecords());
+
+      let count = 0;
+      obj.records.forEach((id) => {
+        const record = obj.data[id];
+        if (!record || record.id !== id) return;
+        if (currentIds.has(id)) return;
+
+        count += 1;
+        storage.saveRecord(record);
+        currentIds.add(record.id);
+      });
+      window.alert(`${count} records appended`);
+
+      const recordsArray = Array.from(currentIds.keys()).sort();
+      console.log(recordsArray);
+      storage.saveRecords(recordsArray);
+      setRecords(recordsArray);
+    } catch (err) {
+      window.alert(`Load failed: ${err.message}`);
+    }
+  }
+}
+
 function createRestore(setRecords) {
   return (data) => {
     try {
@@ -115,6 +149,7 @@ export default function Home() {
     <>
       <Download onPrepare={createBackup}>Backup</Download>
       <Upload onChange={createRestore(setRecords)}>Restore</Upload>
+      <Upload onChange={createLoad(setRecords)}>Load</Upload>
     </>
   ), [setRecords]);
 
