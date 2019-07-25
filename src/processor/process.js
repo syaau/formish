@@ -73,6 +73,12 @@ const specials = {
   ss: date('ss'),
 }
 
+function convert(data) {
+  if (data === true) return 'Yes';
+  if (data === false) return 'No';
+  return data;
+}
+
 export default function process(template, data, structure) {
   // First replace all specials values from the template
   return template.replace(/{{([^}]*)}}/g, (match, first) => {
@@ -99,7 +105,7 @@ export default function process(template, data, structure) {
           .map(v => `${params[0]} ${v}`)
           .join('\n');
       }
-      return data[field];
+      return convert(data[field]);
     }
 
     return match;
