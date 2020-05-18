@@ -1,5 +1,5 @@
 import React from 'react';
-import useOnChange from './useOnChange';
+import useOnChange, { useOnChecked } from './useOnChange';
 
 export default function RadioInput({ onChange, choices, ...other }) {
   const handleChange = useOnChange(onChange);
@@ -17,4 +17,18 @@ export default function RadioInput({ onChange, choices, ...other }) {
       ))}
     </div>
   );
+}
+
+export function CheckInput({ onChange, label, ...other }) {
+  const handleChange = useOnChecked(onChange);
+  const selected = Boolean(other.value);
+
+  return (
+    <div className="Radio">
+      <label>
+        <input {...other} type="checkbox" checked={selected} onChange={handleChange} />
+        <span>{label}</span>
+      </label>
+    </div>
+  )
 }

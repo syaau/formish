@@ -4,6 +4,7 @@ import ListInput from './ListInput';
 import YesNoInput from './YesNoInput';
 import ChoicesInput from './ChoicesInput';
 import SelectInput from './SelectInput';
+import { CheckInput } from './RadioInput';
 
 export {
   TextInput,
@@ -12,6 +13,7 @@ export {
   YesNoInput,
   ChoicesInput,
   SelectInput,
+  CheckInput,
 }
 
 export const types = [

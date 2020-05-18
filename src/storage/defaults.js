@@ -1,8 +1,8 @@
 
 export const defaultStructure = [
-  { name: 'PN', type: 'Text' },
-  { name: 'DATE', type: 'Date' },
-  { name: 'NAME', type: 'Text' },
+  { name: 'PN', type: 'Text', searchable: true },
+  { name: 'DATE', type: 'Date', searchable: true },
+  { name: 'NAME', type: 'Text', searchable: true },
   { name: 'DOB', type: 'Date' },
   { name: 'GENDER', type: 'Choices', choices: 'Male,Female' },
   { name: 'MARRIED', type: 'Yes/No' },

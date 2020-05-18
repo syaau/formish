@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { types, TextInput, SelectInput } from '../../inputs';
+import { types, TextInput, SelectInput, CheckInput } from '../../inputs';
 
 export default function Structure({ value, onChange }) {
   const handleChange = useCallback((name, value) => {
@@ -13,6 +13,9 @@ export default function Structure({ value, onChange }) {
 
   return (
     <tr>
+      <td>
+        <CheckInput name="searchable" label="Search" value={value.searchable} onChange={handleChange} />
+      </td>
       <td>
         <SelectInput name="type" value={value.type} onChange={handleChange} choices={types.map(t => t.id)} />
       </td>

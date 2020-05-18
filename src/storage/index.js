@@ -10,6 +10,12 @@ const storage = {
       if (res === null || !res.structure || !res.markdown) {
         throw new Error('Invalid data');
       }
+      res.structure.forEach(f => {
+        if (f.name === 'PN' || f.name === 'NAME' || f.name === 'DATE') {
+          if (f.searchable === undefined) f.searchable = true;
+        }
+      });
+
       return res;
     } catch (err) {
       console.log('Error', err);

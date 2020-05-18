@@ -13,6 +13,11 @@ function importTemplate(setStructure, setSource) {
       if (!config.markdown || typeof config.markdown !== 'string') throw new Error('No template content found');
       if (!config.structure || !Array.isArray(config.structure)) throw new Error('No template definition found');
       if (window.confirm('Are you sure you want to replace the existing template with the new one ?')) {
+        config.structure.forEach(f => {
+          if (f.name === 'PN' || f.name === 'NAME' || f.name === 'DATE') {
+            if (f.searchable === undefined) f.searchable = true;
+          }
+        });
         storage.saveConfig(config);
         setStructure(config.structure);
         setSource(config.markdown);
