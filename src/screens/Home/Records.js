@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import storage, { useRecord, useConfig } from '../../storage';
+import { searchGeneral, searchHead, searchTail, searchExact } from './search';
 
 function itemKey(index, data) {
   return data[index];
@@ -47,7 +48,6 @@ export default function Records({ records, setSelected, selected }) {
       const record = loadedRecords[records[i]];
       displayFields.forEach((field, idx) => {
         const v = record[field.name];
-        console.log('Value', v, field.name, record);
         widths[idx] = Math.max(widths[idx], String(v).length);
       });
     }
@@ -59,10 +59,21 @@ export default function Records({ records, setSelected, selected }) {
   const filteredRecords = useMemo(() => {
     const f = filter.trim().toLowerCase();
     if (!f) return records;
+
+    let search = searchGeneral(f);
+    if (f.startsWith(':')) {
+      if (f.length > 1 && f.endsWith(':')) {
+        search = searchExact(f.substr(1, f.length - 2));
+      } else {
+        search = searchHead(f.substr(1));
+      }
+    } else if (f.endsWith(':')) {
+      search = searchTail(f.substr(0, f.length - 1));
+    }
+
     return records.filter((id) => {
       const record = loadedRecords[id];
-      const keywords = displayFields.map(f => record[f.name]).join('|');
-      return keywords.toLowerCase().indexOf(f) >= 0;
+      return search(record, displayFields);
     });
   }, [records, filter, displayFields]);
 
