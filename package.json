@@ -42,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/gapi": "^0.0.39",
+    "@types/gapi.auth2": "^0.0.52",
+    "@types/gapi.client.drive": "^3.0.8",
+    "@types/gapi.client.sheets": "^4.0.9"
   }
 }

@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 
 import ToolBar from './ToolBar';
+import { GoogleApp } from './google';
 
 ReactDOM.render((
-  <ToolBar title="Formish">
-    <App />
-  </ToolBar>
+  <GoogleApp>
+    <ToolBar title="Formish">
+      <App />
+    </ToolBar>
+  </GoogleApp>
 ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
